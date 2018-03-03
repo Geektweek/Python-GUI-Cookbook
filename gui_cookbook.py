@@ -8,7 +8,7 @@ win = tk.Tk()
 #Hinzufügen eines Titels
 win.title("Python GUI")
 
-#Adding a Label that will get modified
+#Hinzufügen eines Labels das modifiziert werden kann
 a_label = ttk.Label(win, text= "Enter a Name:")
 a_label.grid(column =0, row=0)
 
