@@ -22,7 +22,7 @@ name = tk.StringVar()
 name_entered = ttk.Entry(win, width=12, textvariable=name)
 name_entered.grid(column= 0, row=1)
 
-#Adding a Button
+#Hinzufügen eines Buttons
 action=ttk.Button(win,text= "Click Me!", command=click_me)
 action.grid(column =2, row =1)
 #action.config(state='disabled') #Disablen eines Buttons
