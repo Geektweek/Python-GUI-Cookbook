@@ -5,7 +5,7 @@ from tkinter import ttk
 #Create an Instance
 win = tk.Tk()
 
-#Add a title
+#Hinzufügen eines Titels
 win.title("Python GUI")
 
 #Adding a Label that will get modified
