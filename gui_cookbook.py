@@ -1,6 +1,6 @@
 #import Tkinter as tk
-import Tkinter as tk
-import ttk
+import tkinter as tk
+from tkinter import ttk
 #from Tkinter import ttk
 
 #Create an Instance
@@ -29,7 +29,8 @@ action.grid(column =2, row =1)
 
 ttk.Label(win, text="Choose a Number: ").grid(column=1, row=0)
 number = tk.StringVar()
-#Readonly Combobox
+
+#Read-only Combobox
 number_chosen= ttk.Combobox(win, width=12, textvariable= number, state='readonly')
 number_chosen['values'] = (1,2,42,100)
 number_chosen.grid(column=1, row=1)
