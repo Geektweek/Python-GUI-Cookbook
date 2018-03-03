@@ -1,7 +1,6 @@
-#import Tkinter as tk
+#Nötige Imports
 import tkinter as tk
 from tkinter import ttk
-#from Tkinter import ttk
 
 #Create an Instance
 win = tk.Tk()
