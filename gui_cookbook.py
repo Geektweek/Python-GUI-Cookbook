@@ -16,7 +16,7 @@ a_label.grid(column =0, row=0)
 ttk.Label(win, text="Choose a Number: ").grid(column=1, row=0)
 number = tk.StringVar()
 
-#Textbox
+#Textbox 
 name = tk.StringVar()
 name_entered = ttk.Entry(win, width=12, textvariable=name)
 name_entered.grid(column= 0, row=1)
