@@ -2,7 +2,7 @@
 import tkinter as tk
 from tkinter import ttk
 
-#Create an Instance
+#Erzeugen eines Fensters
 win = tk.Tk()
 
 #Hinzufügen eines Titels
