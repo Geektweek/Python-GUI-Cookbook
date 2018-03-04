@@ -1,3 +1,4 @@
+
 #Nötige Imports
 import tkinter as tk
 from tkinter import ttk
@@ -7,6 +8,8 @@ win = tk.Tk()
 
 #Titel des Fensters
 win.title("Python GUI")
+#==================================================
+
 
 #Label 
 a_label = ttk.Label(win, text= "Enter a Name:")
@@ -38,7 +41,7 @@ number_chosen.current(0)
 
 name_entered.focus() #Focus auf das Name Feld mit Eingabe
 
-#=================
-#Start der GUI
+#===============================================================================
+#Start GUI
 win.mainloop()
 #=================
