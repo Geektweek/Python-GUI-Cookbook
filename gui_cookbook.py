@@ -1,15 +1,14 @@
-#import Tkinter as tk
+#Nötige Imports
 import tkinter as tk
 from tkinter import ttk
-#from Tkinter import ttk
 
-#Create an Instance
+#Erzeugen eines Fensters
 win = tk.Tk()
 
-#Add a title
+#Hinzufügen eines Titels
 win.title("Python GUI")
 
-#Adding a Label that will get modified
+#Hinzufügen eines Labels das modifiziert werden kann
 a_label = ttk.Label(win, text= "Enter a Name:")
 a_label.grid(column =0, row=0)
 
@@ -22,7 +21,7 @@ name = tk.StringVar()
 name_entered = ttk.Entry(win, width=12, textvariable=name)
 name_entered.grid(column= 0, row=1)
 
-#Adding a Button
+#Hinzufügen eines Buttons
 action=ttk.Button(win,text= "Click Me!", command=click_me)
 action.grid(column =2, row =1)
 #action.config(state='disabled') #Disablen eines Buttons
