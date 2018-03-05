@@ -3,6 +3,7 @@
 # Tkinter baut die GUI nach Columns und Row auf, wie eine Excel-Tabelle
 # Die Länge(width) der Spalten ist abhängig vom Größten Element
 # Mit (columnspan), kann ein Objekt mehrere Spalten Umfassen)
+# Tkinter benutzt automatisch die nächste Reihe, falls keine angegeben ist
 # Falls der Parameter (sticky=tk.W, oder sticky='WE' usw.) gesetzt ist wird das Objekt nicht zentriert
 # ein Container (LabelFrame) kann als Tabelle in einer weiteren Tabelle angesehen werden
 # die Zählung iinnerhalb der Containers beginnt dann wieder bei 0,0.
@@ -12,6 +13,7 @@
 import tkinter as tk
 from tkinter import ttk
 from tkinter import scrolledtext
+from tkinter import Menu
 
 #Erzeugen eines Fensters
 win = tk.Tk()
@@ -28,25 +30,60 @@ colors = ["Blue", "Gold", "Red"]
 BLUE = "Blue"
 GOLD = "Gold"
 RED = "Red"
-#==================================================
 
-#Container,der alle Widgets enthält
-mighty= ttk.LabelFrame(win, text= ' Mighty Python ')
+#==================================================
+# Tabs:
+tabControl = ttk.Notebook(win)         #TabController erstellen
+tab1 = ttk.Frame(tabControl)           #Tabs hinzufügen
+tabControl.add(tab1, text='Tab 1')
+tab2 = ttk.Frame(tabControl)
+tabControl.add(tab2, text='Tab 2')
+
+tabControl.pack(expand= 1, fill="both") #Sichtbar machen der Tabs
+
+#==================================================
+#Container,für Widgets:
+mighty= ttk.LabelFrame(tab1, text= ' Mighty Python ')
 mighty.grid(column=0, row=0, padx=8, pady=4) 
+
+mighty2= ttk.LabelFrame(tab2, text= ' The Snake ')
+mighty2.grid(column=0, row=0, padx=8, pady=4) 
+
 #==================================================
+#Events:
 
+#Beenden der GUI
+def _quit():      #Unterstrich(_) Zeigt private Funktion an
+    win.quit()
+    win.destroy()
+    exit()
 
-#Radiobutton Events
 def radCall():
     radSel=radVar.get()
-    if   radSel == 0: win.configure(background=BLUE)
-    elif radSel == 1: win.configure(background=GOLD)
-    elif radSel == 2: win.configure(background=RED)
+    if   radSel == 0: mighty2.configure(text= 'BLUE')
+    elif radSel == 1: mighty2.configure(text= 'GOLD')
+    elif radSel == 2: mighty2.configure(text= 'RED')
 
 #Event-Funktion für den Button
 def click_me():
 	action.configure(text="Hello " + name.get() + ' ' + number.get())
 
+#==================================================
+#Menüs:
+
+#Menubar erzeugen
+menu_bar= Menu(win)
+win.config(menu=menu_bar)
+#Einträge erzeugen + Untermenüpunkte anlegen
+file_menu = Menu(menu_bar, tearoff=0)        #tearoff: entfernt hässlichen Strich (gedacht um ein Menü abzudocken)
+file_menu.add_command(label='New')
+#file_menu.add_separator()                   #Seperator-Linie
+file_menu.add_command(label='Exit', command=_quit)
+menu_bar.add_cascade(label='File', menu=file_menu)
+
+help_menu = Menu(menu_bar, tearoff=0)      
+menu_bar.add_cascade(label='Help', menu=help_menu)
+help_menu.add_command(label='About')
 #==================================================
 
 #Label 
@@ -70,17 +107,17 @@ action.grid(column =2, row =1)
 
 #Checkbuttons(1. Nicht Drückbar, 2.Standard, 3.Kreuz bereits drinnen)
 chVarDis = tk.IntVar()
-check1 = tk.Checkbutton(mighty, text="Disabled", variable=chVarDis, state='disabled')
+check1 = tk.Checkbutton(mighty2, text="Disabled", variable=chVarDis, state='disabled')
 check1.select()
 check1.grid(column=0, row=4, sticky=tk.W)
 
 chVarUn = tk.IntVar()
-check2 = tk.Checkbutton(mighty, text="UnChecked", variable=chVarUn)
+check2 = tk.Checkbutton(mighty2, text="UnChecked", variable=chVarUn)
 check2.deselect()
 check2.grid(column=1, row=4, sticky=tk.W)
 
 chVarEn = tk.IntVar()
-check3 = tk.Checkbutton(mighty, text="Enabled", variable=chVarEn)
+check3 = tk.Checkbutton(mighty2, text="Enabled", variable=chVarEn)
 check3.select()
 check3.grid(column=2, row=4, sticky=tk.W)
 
@@ -107,7 +144,7 @@ number_chosen.current(0)
 radVar = tk.IntVar() #Eine Variable für 3 Buttons
 radVar.set(99)  #Index, der nicht besetzt ist                               
 for col in range(3):                             
-	curRad = tk.Radiobutton(mighty, text=colors[col], variable=radVar, value=col, command=radCall)
+	curRad = tk.Radiobutton(mighty2, text=colors[col], variable=radVar, value=col, command=radCall)
 	curRad.grid(column=col, row=5, sticky=tk.W) 
 
 #Scrollbarer Text(Param:Größe der Box + Umbruch per Wort)
@@ -117,7 +154,7 @@ scr = scrolledtext.ScrolledText(mighty, width=scrol_w, height=scrol_h, wrap=tk.W
 scr.grid(column=0, row=6, sticky='WE', columnspan=3)
 
 #Container für Labels (param=text, + Feld in der Tabelle, Padding)
-buttons_frame = ttk.LabelFrame(mighty, text=' Labels in a Frame ')
+buttons_frame = ttk.LabelFrame(mighty2, text=' Labels in a Frame ')
 buttons_frame.grid(column=1, row=7) #oder (column=1,padx=20, pady=40 für Mitte)
                 
 #Labels in Container setzen
